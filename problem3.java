@@ -3,18 +3,20 @@ public final class problem3 {
 		System.out.println(new problem3().run());
 	}
 	public String run() {
-		long n = 600851475143L;
+		long N = 600851475143L;
+		double n = (double)N;
 		while (true) {
-			long p = smallestFactor(n);
+			double p = smallestFactor(n);
 			if (p < n)
 				n /= p;
 			else
-				return Long.toString(n);
+				return Double.toString(n);
 		}
 	}
 
-	private static long smallestFactor(long n) {
-		for (long i = 2, end = Library.sqrt(n); i <= end; i++) {
+	private static double smallestFactor(double n) {
+		
+		for (double i = 2, end = Math.sqrt(n); i <= end; i++) {
 			if (n % i == 0)
 				return i;
 		}
