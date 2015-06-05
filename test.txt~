@@ -1,0 +1,148 @@
+Q. What are the main folders (Google and find out and list with partial contents on your system. Give brief descriptions for what you think they contain)?
+bin, boot, dev, etc, home, lib, media, mnt, opt, proc, root, sbin, srv, sys, tmp
+
+bin 	a place for most commonly used terminal commands, like ls, mount, rm, etc.
+boot 	contains files needed to start up the system, including the Linux kernel, a RAM disk image and bootloader configuration files.
+dev 	contains all device files, which are not regular files but instead refer to various hardware devices on the system, including hard 		drives.
+etc 	contains system-global configuration files, which affect the system's behavior for all users.
+home 	the place for users' home directories.
+lib 	contains very important dynamic libraries and kernel modules
+media 	a mount point for external devices, such as hard drives or removable media (floppies, CDs, DVDs).
+mnt 	also a place for mount points, but dedicated specifically to "temporarily mounted" devices, such as network filesystems.
+opt 	can be used to store addition software for your system, which is not handled by the package manager.
+proc 	a virtual filesystem that provides a mechanism for kernel to send information to processes.
+root 	the superuser's home directory, not in /home/ to allow for booting the system even if /home/ is not available.
+sbin 	contains important administrative commands that should generally only be employed by the superuser.
+srv 	can contain data directories of services such as HTTP (/srv/www/) or FTP.
+sys 	a virtual filesystem that can be accessed to set or obtain information about the kernel's view of the system.
+tmp 	a place for temporary files used by applications.
+usr 	contains the majority of user utilities and applications, and partly replicates the root directory structure, containing for instance, 		among others, /usr/bin/ and /usr/lib.
+var 	dedicated variable data that potentially changes rapidly; a notable directory it contains is /var/log where system log files are kept.
+
+Q. What will you find in these folders
+/etc
+/etc/init.d
+/var/log
+/home
+/home/<user-id>
+/boot
+/usr/bin
+
+/etc 		files required to boot the system and communicate, and scripts to control the boot process
+/etc/init.d 	internet service scripts run by init
+/var/log 	system log files
+/home 		user directories
+/home/<user-id> files and folders inside user
+/boot 		files needed to start up the system, including the Linux kernel, a RAM disk image and bootloader configuration files
+/usr/bin 	system binary files
+
+Q. What are environment variables? How do you display the value of an environment variable?
+
+Environment variables are a set of dynamic named values that can affect the way running processes will behave on a computer. They are part of the environment in which a process runs.
+
+By using printenv command.
+
+Q. What is $PATH? What is $HOME?
+
+$PATH	When someone types a command to run, the system looks for it in the directories specified by PATH in the order specified.
+$HOME	The location of the currently logged-in user's home directory.
+
+Q. How do you change the $PATH. Why would you change $PATH?
+
+By using export command.
+$PATH is changed in order to look into more directories for any command, especially new user-built commands.
+
+Q. How do you change $PATH so that it is set to include your changes every time you login? Create a bin directory in your $HOME folder and include that into the PATH so that every time you login the $HOME/bin is part of your PATH.
+
+Add the PATH to /etc/bash.bashrc as root. Then use export commmand to change the path.
+
+
+Q. If you are in the directory /a/b/c/d/e/f/g, what is the shortest command to switch directory to /a/b/c/d/e/h/k?
+
+cd ../../h/k
+
+Listing Directory
+Q. List contents of your home directory
+Q. List contents including hidden files. (What are hidden files?)
+Q. List contents including file sizes and dates
+
+ls
+ls -a (hidden files start with .)
+ls -l
+
+Q. What are the folders in your root directory?
+
+The root directory is the directory that contains all other directories and files on the system.
+
+Moving Files
+Q. How will you move a directory from one folder to another? What is command to move folder c at /a/b/c to /a/d/e/f directory?
+Q. How do you split a large file into smaller files? How will you split a 10GB file into 10 1GB files?
+Q. How do you put the file back together?
+
+By using mv command. To move the folders along with its subdirectories, mv -f is to be used.
+mv b/c d/e/f
+split --bytes=1G filename newfilename
+cat newfilename* > filename
+
+
+Piping and Redirection
+Q. Use |, >, >> with your commands and explain the results in your own words. 
+1. | 
+2. >
+3. >>
+
+|	passes output of one command to input of other command.
+>	save output to a file.
+>>	appends output to a file.
+
+Q. Use the output of ls -l and create a new file with just the file sizes. Use the "cut" command. The whole operation can be done in one line. The fifth column is usually the size.
+
+cut -d '  ' -f 5 > newfile
+
+Q. What do these commands do
+ 
+1. some_command >file.log 2>&1 
+2. some_command 2>&1 | tee -a file.log
+
+saves the stderr to the address of the stdout to file.log. Both standard error and standard output are being saved in the same location.
+appends the stderr with stdout to file.log. It is piped through tee command, which not only redirects to the file, but also to standard output.
+
+Q. What does "tee" do? How can I make the first one behave exactly like the 2nd?
+
+tee copies standard input to file, and also to standard output.
+By not using -a.
+
+File Permissions
+Q. Explain every field/column in the following listing
+Daffy:ndvi sudhir$ ls -l
+total 1752488
+-rw-r--r--     1 sudhir  staff      68567 Nov 24  2014 alld1.txt
+-rw-r--r--     1 sudhir  staff     279909 Nov 24  2014 alld2.txt
+-rw-r--r--     1 sudhir  staff      68567 Nov 24  2014 alld3.txt
+-rw-r--r--     1 sudhir  staff      56139 Nov 19  2014 districts.json
+drwxr-xr-x  6217 sudhir  staff     211378 Nov 24  2014 pixel-maps
+-rwxr-xr-x@    1 sudhir  staff  896793406 Nov 14  2014 water_mask_merged.tif
+
+1st column gives detailed information regarding file permission, 
+2nd column tells about the number of links to the file, 
+3rd and 4th columns are associated with owner and group of the file, 
+5th column displays the size of the file in bytes, 
+6th column displays the recent time and date at which the file was modified, 
+7th column is the actual file/directory name.
+
+Q. What is sudo?
+
+sudo is a command that allows users to run programs with the security privileges of the superuser, or root.
+
+Q. How do you view the contents of /var/log/syslog. Give command to output last 5 lines of this file.
+
+cat /var/log/syslog.
+tail -5 /var/log/syslog.
+
+Q. Create a new user in your system called "zteam" using the command line. Check out the options available for the command to create a user and list down options you'd use to create this account.
+
+sudo adduser zteam
+
+Q. Create a "zteam" folder in your home directory and give "ownnership" of the directory to zteam.
+
+chown zteam zteam
