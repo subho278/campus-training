@@ -10,7 +10,7 @@ public class ZDigit {
 		System.out.println("Enter the zdigit:");
 		String zdigit = input.nextLine();
 		if (zdigit.matches("[A-Z0]")){
-			System.out.println(zdigit);
+			System.out.println("The ZDigit is " + zdigit);
 		}
 		else {
 			System.out.println("IllegalArgumentException");
