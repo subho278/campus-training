@@ -19,7 +19,7 @@ public class ZNumberToDecimal {
 			for (int i = 0; i < znumber.length(); i++) {
 				char c = znumber.charAt(i);
 				int d = base.indexOf(c);
-				val = 26 * val + d;
+				val = 27 * val + d;
 			}
 			System.out.println("Decimal Value of ZNumber is " + val);
 		}
