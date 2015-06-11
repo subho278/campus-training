@@ -8,11 +8,11 @@ public final class sudoku {
 			SudokuSolver ss = new SudokuSolver(puz);
 			return Integer.toString(sum);
 		}
-	public static final class SudokuSolver {
+	private static final class SudokuSolver {
 		public int[][] board;
-		public boolean[][] usedInRow;
-		public boolean[][] usedInColumn;
-		public boolean[][][] usedInBox;
+		private boolean[][] usedInRow;
+		private boolean[][] usedInColumn;
+		private boolean[][][] usedInBox;
 		public SudokuSolver(String nums) {
 			if (nums.length() != 81)
 				throw new IllegalArgumentException("Invalid length");
@@ -36,7 +36,7 @@ public final class sudoku {
 		}
 		return solve(0) && isValid();
 	}
-	public boolean solve(int index) {
+	private boolean solve(int index) {
 		for (; index < 81 && board[index / 9][index % 9] != 0; index++);
 			if (index == 81)
 			return true;
@@ -58,7 +58,7 @@ public final class sudoku {
 			board[y][x] = 0;
 			return false;
 		}
-	public boolean isValid() {
+	private boolean isValid() {
 		boolean[][] rowused = new boolean[9][9];
 		boolean[][] colused = new boolean[9][9];
 		boolean[][][] boxused = new boolean[3][3][9];
@@ -75,7 +75,7 @@ public final class sudoku {
 			return true;
 		}
 	}
-	public static String[] PUZZLES = {
+	private static String[] PUZZLES = {
 	"003020600900305001001806400008102900700000008006708200002609500800203009005010300",
 	"200080300060070084030500209000105408000000000402706000301007040720040060004010003",
 	"000000907000420180000705026100904000050000040000507009920108000034059000507000000",
