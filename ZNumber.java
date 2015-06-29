@@ -9,27 +9,28 @@ public class ZNumber {
 		input = new Scanner(System.in);
 		System.out.println("Length of array");
 		int length = input.nextInt();
-		String array[] = new String[length];
+
+		String zdigit = new String();
 		System.out.println("Enter zdigit");
 
-		for (int i = 0; i < length; i++) {
-
-			array[i] = input.next();
-
-		}
-		
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < length; i++) {
-		   sb.append( array[i] );
-		}
-		String newString = sb.toString();
-		if (newString.matches("[A-Z0]+")){
-			System.out.println("ZNumber is " + newString);
-		}
-		else {
-			System.out.println("IllegalArgumentException");
-		}
-				
-	}
 
+		int i = 0;
+		while (i < length) {
+
+			zdigit = input.next();
+			if (zdigit.matches("[A-Z0]")) {
+				sb.append(zdigit);
+			}
+			i++;
+			
+		}
+
+		String newString = sb.toString();
+		
+		if (length == newString.length())
+			System.out.println("ZNumber is " + newString);
+		else
+			System.out.println("IllegalArgumentException");
+	}
 }
